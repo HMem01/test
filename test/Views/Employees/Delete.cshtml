@@ -1,0 +1,42 @@
+﻿@model test.Models.Employee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <!-- Отображение информации о сотруднике -->
+    <dl class="row">
+        <dt class="col-sm-2">
+            <!-- Метка для отображения имени сотрудника -->
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            <!-- Отображение имени сотрудника -->
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            <!-- Метка для отображения электронной почты сотрудника -->
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            <!-- Отображение электронной почты сотрудника -->
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+
+    <!-- Форма для подтверждения удаления сотрудника -->
+    <form asp-action="Delete">
+        <!-- Скрытое поле для передачи Id сотрудника -->
+        <input type="hidden" asp-for="Id" />
+        <!-- Кнопка для подтверждения удаления -->
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <!-- Ссылка для возврата к списку сотрудников -->
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<test.Models.EmpProj>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <!-- Ссылка для создания новой связи сотрудника и проекта -->
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <!-- Заголовок для столбца с проектом -->
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th>
+                <!-- Заголовок для столбца с сотрудником -->
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Цикл для вывода данных о связях сотрудников и проектов -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <!-- Отображение идентификатора проекта для текущей связи -->
+                    @Html.DisplayFor(modelItem => item.Project.Id)
+                </td>
+                <td>
+                    <!-- Отображение идентификатора сотрудника для текущей связи -->
+                    @Html.DisplayFor(modelItem => item.Employee.Id)
+                </td>
+                <td>
+                    <!-- Ссылки для редактирования, просмотра деталей и удаления текущей связи -->
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID, empId = item.EmployeeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectID, empId = item.EmployeeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID, empId = item.EmployeeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

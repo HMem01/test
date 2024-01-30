@@ -1,0 +1,98 @@
+﻿<!-- Указание модели для представления -->
+@model test.Models.Project
+
+<!-- Установка заголовка страницы -->
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- Заголовок страницы -->
+<h1>Create</h1>
+
+<!-- Заголовок раздела -->
+<h4>Project</h4>
+<hr />
+
+<!-- Форма для создания нового проекта -->
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <!-- Отображение общих ошибок модели -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Поле ввода для свойства Name проекта -->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- Поле ввода для свойства Description проекта -->
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Поле ввода для свойства StartDate проекта -->
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <!-- Поле ввода для свойства EndDate проекта -->
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <!-- Поле ввода для свойства Priority проекта -->
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора заказчика из списка компаний -->
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                @Html.DropDownListFor(model => model.CustomerID, new SelectList(ViewBag.Companys, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="Customer" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора исполнителя из списка компаний -->
+            <div class="form-group">
+                <label asp-for="Perfomer" class="control-label"></label>
+                @Html.DropDownListFor(model => model.PerfomerID, new SelectList(ViewBag.Companys, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="Perfomer" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора менеджера из списка сотрудников -->
+            <div class="form-group">
+                <label asp-for="Manager" class="control-label"></label>
+                @Html.DropDownListFor(model => model.ManagerID, new SelectList(ViewBag.Employers, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="Manager" class="text-danger"></span>
+            </div>
+
+            <!-- Кнопка для отправки формы -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Ссылка для возврата к списку проектов -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Включение необходимых скриптов для клиентской валидации -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

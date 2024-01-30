@@ -1,0 +1,39 @@
+﻿@model test.Models.EmpProj
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>EmpProj</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Скрытые поля для передачи идентификаторов сотрудника и проекта -->
+            <input type="hidden" asp-for="ProjectID" />
+            <input type="hidden" asp-for="EmployeeID" />
+
+            <div class="form-group">
+                <!-- Кнопка отправки формы для сохранения изменений -->
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <!-- Ссылка для возврата к списку связей сотрудников и проектов -->
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Включение скриптов валидации -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,96 @@
+﻿<!-- Указание модели для представления -->
+@model test.Models.Project
+
+<!-- Установка заголовка страницы -->
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- Заголовок страницы -->
+<h1>Edit</h1>
+
+<!-- Отображение данных о проекте для редактирования -->
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+
+            <!-- Поле для хранения идентификатора проекта (скрытое) -->
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Поле для ввода названия проекта -->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- Поле для ввода описания проекта -->
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Поле для ввода даты начала проекта -->
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <!-- Поле для ввода даты завершения проекта -->
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <!-- Поле для ввода приоритета проекта -->
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора заказчика -->
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                @Html.DropDownListFor(model => model.CustomerID, new SelectList(ViewBag.Companys, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="CustomerID" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора исполнителя -->
+            <div class="form-group">
+                <label asp-for="Perfomer" class="control-label"></label>
+                @Html.DropDownListFor(model => model.PerfomerID, new SelectList(ViewBag.Companys, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="PerfomerID" class="text-danger"></span>
+            </div>
+
+            <!-- Выпадающий список для выбора руководителя проекта -->
+            <div class="form-group">
+                <label asp-for="Manager" class="control-label"></label>
+                @Html.DropDownListFor(model => model.ManagerID, new SelectList(ViewBag.Employers, "Id", "Name"), new { @class = "form-control" })
+                <span asp-validation-for="ManagerID" class="text-danger"></span>
+            </div>
+
+            <!-- Кнопка для сохранения изменений -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Ссылка для возврата к списку проектов -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Включение скриптов валидации -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

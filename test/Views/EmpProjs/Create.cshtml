@@ -1,0 +1,49 @@
+﻿@model test.Models.EmpProj
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>EmpProj</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <!-- Форма для создания новой связи между сотрудником и проектом -->
+        <form asp-action="Create">
+            <!-- Вывод общего списка ошибок валидации -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Выбор проекта из выпадающего списка -->
+            <div class="form-group">
+                <label asp-for="ProjectID" class="control-label"></label>
+                <select asp-for="ProjectID" class="form-control" asp-items="ViewBag.ProjectID"></select>
+            </div>
+
+            <!-- Выбор сотрудника из выпадающего списка -->
+            <div class="form-group">
+                <label asp-for="EmployeeID" class="control-label"></label>
+                <select asp-for="EmployeeID" class="form-control" asp-items="ViewBag.EmployeeID"></select>
+            </div>
+
+            <!-- Кнопка для отправки формы и создания новой связи -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Ссылка для возврата к списку связей сотрудников и проектов -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Включение частичных скриптов валидации -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

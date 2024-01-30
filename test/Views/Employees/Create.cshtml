@@ -1,0 +1,49 @@
+﻿@model test.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <!-- Форма для создания нового сотрудника -->
+        <form asp-action="Create">
+            <!-- Вывод ошибок валидации только для модели -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <!-- Поле ввода для имени сотрудника -->
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <!-- Вывод сообщений об ошибке валидации для имени -->
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!-- Поле ввода для электронной почты сотрудника -->
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <!-- Вывод сообщений об ошибке валидации для электронной почты -->
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!-- Кнопка для отправки формы и создания сотрудника -->
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Ссылка для возврата к списку сотрудников -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Раздел скриптов -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

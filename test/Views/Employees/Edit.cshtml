@@ -1,0 +1,51 @@
+﻿@model test.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Employee</h4>
+<hr />
+<!-- Форма для редактирования данных о сотруднике -->
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <!-- Отображение ошибок валидации модели -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- Скрытое поле для идентификатора сотрудника -->
+            <input type="hidden" asp-for="Id" />
+            <!-- Поле для ввода имени сотрудника -->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <!-- Отображение ошибок валидации для имени -->
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <!-- Поле для ввода электронной почты сотрудника -->
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <!-- Отображение ошибок валидации для электронной почты -->
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <!-- Кнопка для сохранения изменений -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Ссылка для возврата к списку сотрудников -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Включение скриптов валидации -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

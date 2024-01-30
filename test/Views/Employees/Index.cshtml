@@ -1,0 +1,51 @@
+﻿@model IEnumerable<test.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<!-- Ссылка для создания нового сотрудника -->
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<!-- Таблица для отображения списка сотрудников -->
+<table class="table">
+    <thead>
+        <tr>
+            <!-- Заголовок для имени сотрудника -->
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <!-- Заголовок для электронной почты сотрудника -->
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Цикл для отображения каждого сотрудника в таблице -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Отображение имени сотрудника -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <!-- Отображение электронной почты сотрудника -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <!-- Ссылки для редактирования, просмотра деталей и удаления сотрудника -->
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+﻿@model test.Models.EmpProj
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EmpProj</h4>
+    <hr />
+    <dl class="row">
+        <!-- Отображение информации о проекте -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Id)
+        </dd>
+
+        <!-- Отображение информации о сотруднике -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Id)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <!-- Ссылка для перехода к странице редактирования связи -->
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID, projectId = Model.ProjectID }) |
+
+    <!-- Ссылка для возврата к списку связей сотрудников и проектов -->
+    <a asp-action="Index">Back to List</a>
+</div>
